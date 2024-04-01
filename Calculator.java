@@ -9,9 +9,22 @@ public class Calculator implements ActionListener {
   JTextField textField;
   JButton[] numberButtons = new JButton[10];
   JButton[] functionButtons = new JButton[8];
+  JButton addButton, subButton, mulButton, divButton, decButton, equButton, delButton, clrButton;
+  JPanel panel;
+
+  double firstNum = 0, secondNum = 0, result = 0;
+  char operator;
 
   Calculator() {
+    frame = new JFrame("Calculator");
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setSize(420, 550);
+    frame.setLayout(null);
 
+    textField = new JTextField();
+    textField.setBounds(50, 25, 300, 50);
+
+    frame.setVisible(true);
   }
 
   public static void main(String[] args) {
