@@ -31,6 +31,12 @@ public class Calculator implements ActionListener {
         // create number buttons
         numberButtons();
 
+        JPanel buttonPanel = panel();
+
+        frame.add(buttonPanel);
+        frame.add(del);
+        frame.add(clr);
+
         frame.add(display);
         frame.setVisible(true);
     }
@@ -43,8 +49,29 @@ public class Calculator implements ActionListener {
 
     }
 
-    private void panel() {
+    private JPanel panel() {
         JPanel panel = new JPanel();
+        panel.setBounds(50, 100, 300, 300);
+        panel.setLayout(new GridLayout(4, 4, 10, 10));
+
+        panel.add(numbers[1]);
+        panel.add(numbers[2]);
+        panel.add(numbers[3]);
+        panel.add(add);
+        panel.add(numbers[4]);
+        panel.add(numbers[5]);
+        panel.add(numbers[6]);
+        panel.add(sub);
+        panel.add(numbers[7]);
+        panel.add(numbers[8]);
+        panel.add(numbers[9]);
+        panel.add(mul);
+        panel.add(dec);
+        panel.add(numbers[0]);
+        panel.add(equ);
+        panel.add(div);
+
+        return panel;
     }
 
     private void numberButtons() {
