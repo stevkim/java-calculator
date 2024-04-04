@@ -46,7 +46,74 @@ public class Calculator implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
+        Object current = e.getSource();
+        String text = display.getText();
 
+        for (int i = 0; i < numbers.length; i++) {
+            if (current == numbers[i]) {
+                display.setText(text.concat(String.valueOf(i)));
+            }
+        }
+
+        if (current == dec) {
+            display.setText(text.concat("."));
+        }
+
+        if (current == add) {
+            inputOne = Double.parseDouble(text);
+            op = '+';
+            display.setText("");
+        }
+
+        if (current == sub) {
+            inputOne = Double.parseDouble(text);
+            op = '-';
+            display.setText("");
+        }
+
+        if (current == mul) {
+            inputOne = Double.parseDouble(text);
+            op = '*';
+            display.setText("");
+        }
+
+        if (current == div) {
+            inputOne = Double.parseDouble(text);
+            op = '/';
+            display.setText("");
+        }
+
+        if (current == equ) {
+            inputTwo = Double.parseDouble(text);
+            switch (op) {
+                case '+':
+                    result = inputOne + inputTwo;
+                    break;
+                case '-':
+                    result = inputOne - inputTwo;
+                    break;
+                case '*':
+                    result = inputOne * inputTwo;
+                    break;
+                case '/':
+                    result = inputOne / inputTwo;
+                    break;
+            }
+            display.setText(String.valueOf(result));
+            inputOne = result;
+        }
+
+        if (current == del) {
+            display.setText("");
+
+            for (int i = 0; i < text.length() - 1; i++) {
+                display.setText(display.getText() + text.charAt(i));
+            }
+        }
+
+        if (current == clr) {
+            display.setText("");
+        }
     }
 
     private JPanel panel() {
@@ -83,60 +150,29 @@ public class Calculator implements ActionListener {
     }
 
     private void functionButtons() {
-        String[] operators = { "+", "-", "*", "/", ".", "=", "Del", "Clear" };
+        add = new JButton("+");
+        sub = new JButton("-");
+        mul = new JButton("*");
+        div = new JButton("/");
+        dec = new JButton("+");
+        equ = new JButton("=");
+        del = new JButton("Delete");
+        clr = new JButton("Clear");
 
-        for (int i = 0; i < operators.length; i++) {
-            switch (operators[i]) {
-                case "+":
-                    add = new JButton("+");
-                    add.addActionListener(this);
-                    add.setFocusable(false);
-                    functions[i] = add;
-                    break;
-                case "-":
-                    sub = new JButton("-");
-                    sub.addActionListener(this);
-                    sub.setFocusable(false);
-                    functions[i] = sub;
-                    break;
-                case "*":
-                    mul = new JButton("*");
-                    mul.addActionListener(this);
-                    mul.setFocusable(false);
-                    functions[i] = mul;
-                    break;
-                case "/":
-                    div = new JButton("/");
-                    div.addActionListener(this);
-                    div.setFocusable(false);
-                    functions[i] = div;
-                    break;
-                case ".":
-                    dec = new JButton("+");
-                    dec.addActionListener(this);
-                    dec.setFocusable(false);
-                    functions[i] = dec;
-                    break;
-                case "=":
-                    equ = new JButton("=");
-                    equ.addActionListener(this);
-                    equ.setFocusable(false);
-                    functions[i] = equ;
-                    break;
-                case "Del":
-                    del = new JButton("Delete");
-                    del.addActionListener(this);
-                    del.setFocusable(false);
-                    functions[i] = del;
-                    break;
-                case "Clear":
-                    clr = new JButton("Clear");
-                    clr.addActionListener(this);
-                    clr.setFocusable(false);
-                    functions[i] = clr;
-                    break;
-            }
+        functions[0] = add;
+        functions[1] = sub;
+        functions[2] = mul;
+        functions[3] = div;
+        functions[4] = dec;
+        functions[5] = equ;
+        functions[6] = del;
+        functions[7] = clr;
+
+        for (int i = 0; i < functions.length; i++) {
+            functions[i].addActionListener(this);
+            functions[i].setFocusable(false);
         }
+
         del.setBounds(50, 430, 145, 50);
         clr.setBounds(205, 430, 145, 50);
     }
