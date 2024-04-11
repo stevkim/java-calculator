@@ -26,7 +26,6 @@ public class Calculator implements ActionListener {
     textField.setFocusable(false);
 
     initializeFunctionButtons();
-
     initializeNumberButtons();
 
     JPanel numberPanel = initializeNumberPanel();
@@ -39,7 +38,7 @@ public class Calculator implements ActionListener {
   }
 
   public static void main(String[] args) {
-    Calculator calc = new Calculator();
+    new Calculator();
   }
 
   public void actionPerformed(ActionEvent e) {
